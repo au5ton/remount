@@ -51,6 +51,7 @@ export interface ElementSpec {
   quiet?: boolean
   shadow?: boolean
   retarget?: boolean
+  slotChildren?: boolean
 }
 
 export type ReactAdapter = Adapter

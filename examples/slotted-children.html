@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<script crossorigin src='https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.4/custom-elements-es5-adapter.js'></script>
+<script crossorigin src='https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.4/webcomponents-loader.js'></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src='../dist/remount.es5.js'></script>
+</head>
+<body>
+  <h1>Web components test</h1>
+  <my-react-fancy-button onclick="alert(1)">This is my fancy button text</my-react-fancy-button>
+
+  <script>
+    const h = React.createElement
+    /**
+     * Fancy button that accepts children
+     */
+    function FancyButton({ children, ...props }) {
+      const fancyStyles = {
+        display: 'inline-block',
+        padding: '0px 16px',
+        backgroundColor: 'rgb(0, 120, 212)',
+        color: 'rgb(255, 255, 255)',
+        border: '1px solid rgb(0, 120, 212)',
+        borderRadius: '2px',
+        height: '32px',
+        minWidth: '80px',
+        cursor: 'pointer'
+      }
+      return h('button', { style: fancyStyles, ...props }, children)
+    }
+
+    Remount.define({
+      'my-react-fancy-button': {
+        component: FancyButton,
+        shadow: true,
+        slotChildren: true,
+      },
+    })
+  </script>
+</body>
+</html>

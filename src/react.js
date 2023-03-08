@@ -16,7 +16,7 @@ const roots = new Map()
  */
 
 export function mount(elSpec, mountPoint, props, element) {
-  const reactElement = React.createElement(elSpec.component, props)
+  const reactElement = React.createElement(elSpec.component, props, elSpec.slotChildren && elSpec.shadow ? React.createElement('slot', {}) : null)
   const root = ReactDOM.createRoot(mountPoint)
   roots.set(mountPoint, root)
   root.render(reactElement)
